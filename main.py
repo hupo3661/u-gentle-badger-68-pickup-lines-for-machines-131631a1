@@ -17,6 +17,10 @@ LINE = (
 def main() -> None:
     if not LINE.strip():
         raise SystemExit("Invalid line: entry must be non-empty.")
+    if LINE != LINE.strip():
+        raise SystemExit(
+            "Invalid line: entry must not have leading or trailing whitespace."
+        )
     if len(LINE) > 200:
         raise SystemExit(
             f"Invalid line: {len(LINE)} characters, over the 200 limit."
