@@ -27,7 +27,13 @@ def main() -> None:
         )
     out_dir = Path("/output")
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "entry.txt").write_text(LINE, encoding="utf-8")
+    out_file = out_dir / "entry.txt"
+    out_file.write_text(LINE, encoding="utf-8")
+    written = out_file.read_text(encoding="utf-8")
+    if written != LINE:
+        raise SystemExit(
+            "Write verification failed: entry.txt content does not match the line."
+        )
 
 
 if __name__ == "__main__":
